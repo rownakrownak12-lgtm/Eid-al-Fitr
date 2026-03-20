@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Eid Special Surprise | Rownak</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Hind+Siliguri:wght@400;600&display=swap');
+
+        :root {
+            --bg: #12020a;
+            --gold: #fcc200;
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Hind Siliguri', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #2c061d 0%, #12020a 100%);
+            color: #fff;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; width: 100vw;
+            text-align: center; overflow: hidden;
+        }
+
+        #canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+
+        .screen {
+            display: none; width: 90%; max-width: 380px;
+            background: var(--glass); padding: 25px; border-radius: 35px;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            max-height: 85vh; overflow-y: auto; position: relative; z-index: 10;
+        }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        .premium-img { 
+            width: 100%; aspect-ratio: 1/1; object-fit: cover;
+            border-radius: 20px; margin-bottom: 15px; 
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        h1 { color: var(--gold); font-size: 1.4rem; margin: 10px 0; }
+
+        .btn {
+            background: linear-gradient(45deg, var(--gold), #ffcc33);
+            color: #12020a; padding: 14px; border: none;
+            border-radius: 50px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; width: 100%; transition: 0.3s;
+            box-shadow: 0 8px 15px rgba(252, 194, 0, 0.2);
+            margin-top: 5px; font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .btn:active { transform: scale(0.96); }
+
+        .wish-text {
+            font-size: 0.9rem; line-height: 1.7; text-align: justify; 
+            margin-bottom: 20px; color: #ddd;
+        }
+
+        .rownak-footer {
+            margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;
+        }
+
+        .rownak-text {
+            font-size: 13px; font-weight: 600; letter-spacing: 2px;
+            background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: rainbow 3s linear infinite; background-size: 200% auto;
+            text-transform: uppercase;
+        }
+        @keyframes rainbow { to { background-position: 200% center; } }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" loop preload="auto">
+        <source src="eid-bgm.m4a" type="audio/mp4">
+    </audio>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="screen-1" class="screen">
+        <img src="cat-salam.jpg" class="premium-img">
+        <h1>আসসালামু আলাইকুম! 👋</h1>
+        <button class="btn" onclick="startMusicAndNext()">ওয়ালাইকুম আসসালাম 👋</button>
+    </div>
+
+    <div id="screen-2" class="screen">
+        <img src="cat-funny.jpg" class="premium-img">
+        <h1>হুমমম... 🙄</h1>
+        <p>সালাম তো দিলাম, কিন্তু আমার <b>সালামি</b> কই? টাকা ছাড়া কি আর ঈদ হয়? 💸</p>
+        <button class="btn" onclick="salamiLogic()">সালামি দিচ্ছি তো... ❤️</button>
+    </div>
+
+    <div id="screen-3" class="screen">
+        <img src="cat-eid.jpg" class="premium-img">
+        <h1>عيد مبارك ✨ ঈদ মোবারক! 🌙</h1>
+        <div class="wish-text">
+            পবিত্র ঈদুল ফিতরের এই বরকতময় দিনে আপনাকে ও আপনার পরিবারের সবাইকে জানাই অনেক অনেক ভালোবাসা ও আন্তরিক শুভেচ্ছা। এক মাস সিয়াম সাধনার পর এই ঈদ আমাদের জীবনে নিয়ে আসুক সীমাহীন শান্তি ও সমৃদ্ধি। <br><br>
+            আকাশের ওই রুপালি চাঁদের হাসিতে ছড়িয়ে পড়ুক আপনার সকল স্বপ্ন পূরণের আনন্দ। আপনার প্রতিটি দিন হোক প্রজাপতির মতো রঙিন, আর প্রতিটি রাত হোক চাঁদের আলোর মতো স্নিগ্ধ। এই খুশির দিনে আপনার সব দুঃখ-কষ্ট ধুয়ে মুছে যাক, আর জীবন ভরে উঠুক নতুন নতুন সাফল্যে। <br><br>
+            পরিবারের প্রিয়জনদের সাথে হাসি-আনন্দে মেতে উঠুন উৎসবের এই মহালগ্নে। আপনার আগামীর পথচলা হোক নিরাপদ ও সুন্দর। আপনার জন্য সবসময় অনেক অনেক দোয়া ও শুভকামনা রইল। পবিত্র এই ঈদের আনন্দ ছড়িয়ে পড়ুক সবার মাঝে। ✨🦋
+        </div>
+        <div class="rownak-footer">
+            <span class="rownak-text">Developed by Rownak</span>
+        </div>
+        <button class="btn" onclick="location.reload()" style="background:transparent; border:1px solid rgba(255,255,255,0.3); color:#fff; margin-top:15px; font-size: 0.8rem; padding: 10px;">আবার দেখুন 🔄</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        const audio = document.getElementById("bg-music");
+
+        function startMusicAndNext() {
+            audio.play().catch(e => console.log("Audio play blocked."));
+            showScreen(2);
+        }
+
+        function showScreen(num) {
+            document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+            document.getElementById('screen-' + num).style.display = 'block';
+            if (window.navigator.vibrate) window.navigator.vibrate(50);
+        }
+
+        function salamiLogic() {
+            alert("থাক আর লাগবে না, এমনি বললাম 😂");
+            launchFireworks();
+            showScreen(3);
+        }
+
+        function launchFireworks() {
+            var duration = 5 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 25, spread: 360, ticks: 50, zIndex: 1000 };
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 40 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+
+        window.onload = () => { showScreen(1); };
+    </script>
+</body>
+</html>
